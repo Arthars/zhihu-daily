@@ -5,34 +5,20 @@ import APIService from '../api'
 Vue.use(Vuex)
 
 const Types = {
-  SET_LOADING: 'setLoading',
+  SET_LOADING_STATE: 'setLoading',
   SET_NEWS: 'setNews',
   SET_TOP_NEWS: 'setTopNews'
 }
 
 const state = {
-  route: {
-    name: '',
-    path: '',
-    hash: '',
-    query: {
-    },
-    params: {
-    },
-    fullPath: '',
-    meta: {}
-  },
-  screen: {
-    mobile: false,
-    tablet: false,
-    desktop: false,
-    smallScreen: false
-  }
+  topNews: [],
+  news: [],
+  isLoading: false
 }
 
 const mutations = {
-  [Types.SET_LOADING] (state, loading) {
-    state.loading = loading
+  [Types.SET_LOADING_STATE] (state, loading) {
+    state.isLoading = loading
   },
   [Types.SET_TOP_NEWS] (state, topNews) {
     state.topNews = topNews
@@ -46,13 +32,14 @@ const getters = {}
 
 const actions = {
   initLastedNews ({ commit, state }) {
-    commit(Types.SET_LOADING, true)
+    commit(Types.SET_LOADING_STATE, true)
     return APIService.getNews().then((response) => {
-      let topNews = response.top_stories
-      let news = response.top_stories
+      console.log(response)
+      let topNews = response.data.topStories
+      let news = response.data.stories
       commit(Types.SET_TOP_NEWS, topNews)
       commit(Types.SET_NEWS, news)
-      commit(Types.SET_LOADING, false)
+      commit(Types.SET_LOADING_STATE, false)
     })
   }
 }

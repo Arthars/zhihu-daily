@@ -34,7 +34,6 @@ const actions = {
   initLastedNews ({ commit, state }) {
     commit(Types.SET_LOADING_STATE, true)
     return APIService.getNews().then((response) => {
-      console.log(response)
       let topNews = response.data.topStories
       let news = response.data.stories
       commit(Types.SET_TOP_NEWS, topNews)

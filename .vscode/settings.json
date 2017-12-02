@@ -1,0 +1,30 @@
+{
+  "editor.tabSize": 2,
+  "path-intellisense.mappings": {
+    "utilities": "${workspaceRoot}/src/utilities",
+    "components": "${workspaceRoot}/src/components",
+    "test": "${workspaceRoot}/test"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true
+  },
+  "editor.renderWhitespace": "boundary",
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "vetur.format.defaultFormatter": {
+    "html": "js-beautify-html",
+    "css": "prettier",
+    "postcss": "prettier",
+    "scss": "prettier",
+    "less": "prettier",
+    "js": "prettier",
+    "ts": "prettier",
+    "stylus": "stylus-supremacy"
+  },
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": "force-aligned"
+    }
+  }
+}

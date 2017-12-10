@@ -1,0 +1,168 @@
+@yellow: #FFD300;
+@blue: #5B7492;
+@gray: #acb9c8;
+
+.app-view {
+  .mint-swipe {
+      overflow: hidden;
+      position: relative;
+      height: 400px;
+    }
+    .mint-swipe-items-wrap {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+    .mint-swipe-items-wrap > div {
+        position: absolute;
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+        width: 100%;
+        height: 100%;
+        display: none
+    }
+    .mint-swipe-items-wrap > div.is-active {
+        display: block;
+        -webkit-transform: none;
+                transform: none;
+    }
+    .mint-swipe-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+    }
+    .mint-swipe-indicator {
+        width: 8px;
+        height: 8px;
+        display: inline-block;
+        border-radius: 100%;
+        background: #000;
+        opacity: 0.2;
+        margin: 0 3px;
+    }
+    .mint-swipe-indicator.is-active {
+        background: #fff;
+    }
+    .swiper-container-horizontal > .swiper-pagination-bullets {
+        bottom: 1rem;
+        width: 95%;
+        text-align: right;
+    }
+}
+.mint-swipe-item {
+    div {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    img {
+        top: 50%;
+        position: relative;
+        transform: translate(0, -50%);
+    }
+    h3 {
+        width: 70%;
+        color: #fff;
+        margin: 0;
+        font-size: 0.5rem;
+        line-height: 1rem;
+        right: 5%;
+        bottom: 2.6rem;
+        text-align: right;
+        position: absolute;
+        text-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+        &:before {
+            content: "";
+            width: 3rem;
+            bottom: -.6rem;
+            right: 0;
+            display: block;
+            position: absolute;
+            border: 2px solid @yellow;
+        }
+    }
+}
+.loading {
+    width: 25%;
+    height: 0.4rem;
+    margin: 25% auto 0;
+    position: relative;
+    span {
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 50%;
+        position: absolute;
+        background: @blue;
+        transform: translate(-50%,0);
+    }
+    .left {
+        background: @yellow;
+        animation: lMove 2.5s ease infinite;
+    }
+    .middle {
+        left: 50%;
+        animation: mMove 2.5s ease infinite;
+    }
+    .right {
+        left: 100%;
+        background: @gray;
+        animation: rMove 2.5s ease infinite;
+    }
+}
+@keyframes lMove {
+    0% {
+        left: 0;
+    }
+    25% {
+        left: 50%;
+        background: @yellow;
+    }
+    50% {
+        left: 100%;
+        background: @blue;
+    }
+    75% {
+        left: 50%;
+        background: @gray;
+    }
+    100% {
+        left: 0;
+    }
+}
+@keyframes mMove {
+    0% {}
+    25% {
+        background: @blue;
+    }
+    50% {
+        background: @yellow;
+    }
+    75% {
+        background: @blue;
+    }
+    100% {}
+}
+@keyframes rMove {
+    0% {
+        left: 100%;
+    }
+    25% {
+        left: 50%;
+    }
+    50% {
+        left: 0;
+        background: @gray;
+    }
+    75% {
+        left: 50%;
+        background: @yellow;
+    }
+    100% {
+        left: 100%;
+    }
+}

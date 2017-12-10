@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import APIService from '../api'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
@@ -35,7 +36,8 @@ const actions = {
     commit(Types.SET_LOADING_STATE, true)
     return APIService.getNews().then((response) => {
       let topNews = response.data.topStories
-      let news = response.data.stories
+      let news = _.cloneDeep(state.news)
+      news.push(response.data)
       commit(Types.SET_TOP_NEWS, topNews)
       commit(Types.SET_NEWS, news)
       commit(Types.SET_LOADING_STATE, false)

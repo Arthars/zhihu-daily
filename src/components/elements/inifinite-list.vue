@@ -1,6 +1,6 @@
 <template>
   <div v-infinite-scroll="loadMore"
-       infinite-scroll-disabled="loading"
+       infinite-scroll-disabled="inifiniteLoading"
        infinite-scroll-distance="10">
     <div class="list"
          v-for="dailyNews in list"
@@ -18,18 +18,19 @@
   </div>
 </template>
 <script>
+import moment from 'moment'
+import { mapState } from 'vuex'
+
 export default {
   name: 'inifinite-list',
   props: {
     list: {
       type: Array,
       required: true
-    },
-    loading: {
-      type: Boolean,
-      required: true,
-      default: false
     }
+  },
+  computed: {
+    ...mapState(['inifiniteLoading'])
   },
   methods: {
     loadMore: function() {
@@ -39,8 +40,7 @@ export default {
       this.$emit('goDetail', id)
     },
     dateFormat: function(date) {
-      console.log(date)
-      return '2017/12/10'
+      return moment(date).format('YYYY/MM/DD')
     }
   }
 }

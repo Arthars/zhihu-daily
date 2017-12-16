@@ -5,22 +5,10 @@ import Parser from '../utilities/object-parser'
 import _ from 'lodash' */
 
 export default {
-  getNews: function () {
-    return new Promise((resolve, reject) => {
-      axios.get(router.NewsUrl, { cache: true }).then((response) => {
-        let news = Parser.toCamelCase(response)
-        resolve(news)
-      })
-
-      /* let results = _.map(MockData.lastedNews, (item) => {
-        item.image = item.images && item.images[0]
-        return item
-      })
-
-      resolve({
-        data: Parser.toCamelCase(results)
-      }) */
-    })
+  getNews: async function () {
+    let response = await axios.get(router.NewsUrl, { cache: true })
+    let news = Parser.toCamelCase(response)
+    return news
   },
   getNewDetail: function (id) {
     return new Promise((resolve, reject) => {
@@ -30,12 +18,9 @@ export default {
       })
     })
   },
-  getNewsByDate: function (date) {
-    return new Promise((resolve, reject) => {
-      axios.get(router.NewsDateUrl + date, { cache: true }).then((response) => {
-        let news = Parser.toCamelCase(response)
-        resolve(news)
-      })
-    })
+  getNewsByDate: async function (date) {
+    let response = await axios.get(router.NewsDateUrl + date, { cache: true })
+    let news = Parser.toCamelCase(response)
+    return news
   }
 }

@@ -1,6 +1,10 @@
 # zhihu-daily
 
-> zhihu daily single page app
+> Just a practice thing, it use the API & CSS from [walleeeee/daily-zhihu](https://github.com/walleeeee/daily-zhihu)
+
+# Plan to do
+1. Detail page
+2. Menu
 
 ## Build Setup
 

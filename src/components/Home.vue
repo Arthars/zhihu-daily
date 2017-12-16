@@ -13,7 +13,6 @@
       </mt-swipe-item>
     </mt-swipe>
     <inifinite-list :list="news"
-                    :loading="inifiniteLoading"
                     @loadMore="loadMore"
                     @goDetail="goDetail"></inifinite-list>
     <loading :isLoading="isLoading"></loading>
@@ -23,6 +22,7 @@
 import loading from 'Components/elements/loading'
 import inifiniteList from 'Components/elements/inifinite-list'
 import { mapState } from 'vuex'
+
 export default {
   name: 'home',
   components: {
@@ -32,27 +32,15 @@ export default {
   created() {
     this.$store.dispatch('initLastedNews')
   },
-  data() {
-    return {
-      inifiniteLoading: false
-    }
-  },
   computed: {
-    ...mapState(['topNews', 'news', 'isLoading']),
-    dateFormat() {
-      return '2017/12/10'
-    }
+    ...mapState(['topNews', 'news', 'isLoading'])
   },
   methods: {
     goDetail(id) {
       console.log(id)
     },
     loadMore() {
-      this.inifiniteLoading = true
-      setTimeout(() => {
-        console.log('Home loadMore')
-        this.inifiniteLoading = false
-      }, 2500)
+      this.$store.dispatch('loadNextNews')
     }
   }
 }

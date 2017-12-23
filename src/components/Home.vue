@@ -37,6 +37,13 @@ export default {
   },
   methods: {
     goDetail(id) {
+      this.$router.push({
+        name: 'Detail',
+        params: {
+          id: id
+        },
+        query: this.$route.query
+      })
       console.log(id)
     },
     loadMore() {

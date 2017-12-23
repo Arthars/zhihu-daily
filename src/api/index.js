@@ -10,13 +10,10 @@ export default {
     let news = Parser.toCamelCase(response)
     return news
   },
-  getNewDetail: function (id) {
-    return new Promise((resolve, reject) => {
-      axios.get(router.NewsDetailUrl + id, { cache: true }).then((response) => {
-        let newsDetail = Parser.toCamelCase(response)
-        resolve(newsDetail)
-      })
-    })
+  getNewDetail: async function (id) {
+    let response = await axios.get(router.NewsDetailUrl + id, { cache: true })
+    let newsDetail = Parser.toCamelCase(response)
+    return newsDetail
   },
   getNewsByDate: async function (date) {
     let response = await axios.get(router.NewsDateUrl + date, { cache: true })

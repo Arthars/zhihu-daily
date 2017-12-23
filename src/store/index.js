@@ -10,15 +10,28 @@ const Types = {
   SET_NEWS: 'setNews',
   SET_TOP_NEWS: 'setTopNews',
   SET_LASTED_DATE: 'setLastedDate',
-  SET_INIFINITE_LOADING: 'setInifiniteLoading'
+  SET_INIFINITE_LOADING: 'setInifiniteLoading',
+  SET_TOPIC: 'setTopic'
 }
 
 const state = {
+  route: {
+    name: '',
+    path: '',
+    hash: '',
+    query: {
+    },
+    params: {
+    },
+    fullPath: '',
+    meta: {}
+  },
   topNews: [],
   news: [],
   isLoading: false,
   lastedDate: '',
-  inifiniteLoading: false
+  inifiniteLoading: false,
+  topic: {}
 }
 
 const mutations = {
@@ -36,6 +49,9 @@ const mutations = {
   },
   [Types.SET_INIFINITE_LOADING](state, status) {
     state.inifiniteLoading = status
+  },
+  [Types.SET_TOPIC](state, topic) {
+    state.topic = topic
   }
 }
 
@@ -63,6 +79,13 @@ const actions = {
       commit(Types.SET_LASTED_DATE, response.data.date)
       commit(Types.SET_INIFINITE_LOADING, false)
     }
+  },
+  async initTopic({ commit, state, rootState }) {
+    let topicId = state.route.params.id
+    commit(Types.SET_LOADING_STATE, true)
+    let response = await APIService.getNewDetail(topicId)
+    commit(Types.SET_TOPIC, response.data)
+    commit(Types.SET_INIFINITE_LOADING, false)
   }
 }
 
